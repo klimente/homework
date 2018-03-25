@@ -1,2 +1,3 @@
-s = 'First line.\nSecond line.'
-print(s)
+
+
+print("Result {a}".format(a = int(input())**13)
