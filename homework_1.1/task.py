@@ -8,7 +8,7 @@ tasks = dict.fromkeys([x for x in range(1,numbers_of_tasks+1)],0)  #Словар
 tasks_hardness = tasks.copy()  #Словарь с суммой баллов для каждой задачи
 
 for i in range(1,numbers_of_students+1): #Заполняю имя для каждого студента
-  name = input(f"Введите имя {i}-го студента -")
+  name = input(f"Введите имя {i}-го студента -").title()
   students[name] = tasks.copy()   #Добавляю словарь оценко к каждому студенту
   students_rate[name] = 0 # Инициализирую словарь с рейтингом
 
@@ -20,7 +20,8 @@ for key,value in students.items():
       students_rate[key] += mark #Заполняю рейтинг студентов и задач
       tasks_hardness[j] += mark
     else:
-      print("Оценка не в интервале от 0 до 10 попробуйте еще.")
+      print("Оценка не в интервале от 0 до 10 попробуйте еще.".upper())
+      break
 
 top_s = 3 if len(students_rate)>3 else len(students_rate) #Количество элементов в топе для студентов
 top_t = 3 if len(tasks_hardness)>3 else len(tasks_hardness) #Количество элементов в топе для задач
