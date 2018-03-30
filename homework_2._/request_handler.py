@@ -19,11 +19,14 @@ def query(collection: list, select_func, *filters):
     :type filters: function.
     :returns: list -- Output list of handler data
     """
-    query.coll = collection                    #создаю атрибут для работы остальных функций
-    select_func()
-    for filter in filters:
-        filter()
-    return list(query.coll)
+    if collection:
+        query.coll = collection                    #создаю атрибут для работы остальных функций
+        select_func()
+        for filter in filters:
+            filter()
+        return list(query.coll)
+    else:
+        print("Коллекция пуста")
 
 def select(*field_name: str):
     """A function which returns function to work with fields data collection.
@@ -37,10 +40,13 @@ def select(*field_name: str):
 
         :returns: None -- just change a mutable collection to output data.
         """
-        for i in query.coll:
-            for j in i.copy():
-                if j not in field_name:
-                    i.pop(j)
+        if query.coll:
+            for i in query.coll:
+                for j in i.copy():
+                    if j not in field_name:
+                        i.pop(j)
+        else:
+            print("Коллекция не установлена")
     return inner
 
 def field_filter(field_name: str, *collection: list):
@@ -50,17 +56,20 @@ def field_filter(field_name: str, *collection: list):
     :type field_name: str.
     :param collection: Collection of values that must be in output data.
     :type collection: list.
-    :returns: function -- that filter by parametr 'collection'.
+    :returns: function -- that filter by parametr 'collection' or None.
     """
     def inner():
         """A function to work with fields and values that was defined in  fields_filter function.
 
         :returns: None -- change a mutable collection to output data.
         """
-        for i in query.coll:
-            for j in collection:
-                if i[field_name] not in j:
-                    query.coll.pop(query.coll.index(i))
+        if query.coll:
+            for i in query.coll:
+                for j in collection:
+                    if i[field_name] not in j:
+                        query.coll.pop(query.coll.index(i))
+        else:
+            print("Коллекция не установленна")
     return inner
 
 C = query(
