@@ -19,14 +19,13 @@ def query(collection: list, select_func, *filters):
     :type filters: function.
     :returns: list -- Output list of handler data or None.
     """
+    query.coll = collection                    #создаю атрибут для работы остальных функций
     if collection:
-        query.coll = collection                    #создаю атрибут для работы остальных функций
         select_func()
         for filter in filters:
             filter()
-        return list(query.coll)
-    else:
-        print("Коллекция пуста")
+
+    return list(query.coll)
 
 def select(*field_name: str):
     """A function which returns function to work with fields data collection.
