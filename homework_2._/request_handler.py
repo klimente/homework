@@ -17,7 +17,7 @@ def query(collection: list, select_func, *filters):
     :type select_func: function.
     :param filters: Tuple of filters that filter the data in output collection.
     :type filters: function.
-    :returns: list -- Output list of handler data
+    :returns: list -- Output list of handler data or None.
     """
     if collection:
         query.coll = collection                    #создаю атрибут для работы остальных функций
@@ -33,7 +33,7 @@ def select(*field_name: str):
 
     :param field_name: Tuple of strings.
     :type field_name:str
-    :returns: function -- To work with data of field_name
+    :returns: function -- To work with data of field_name or None.
     """
     def inner():
         """A function to work with fields that was defined in select function.
