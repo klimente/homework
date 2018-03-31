@@ -19,7 +19,7 @@ def query(collection: list, select_func, *filters):
     :type filters: function.
     :returns: list -- Output list of handler data or None.
     """
-    query.coll = collection                    #создаю атрибут для работы остальных функций
+    query.coll = collection.copy()                  #создаю атрибут для работы остальных функций
     if collection:
         select_func()
         for filter in filters:
@@ -73,10 +73,11 @@ def field_filter(field_name: str, *collection: list):
 
 C = query(
     FRIENDS,
-    select("name", "gender", "sport"),
+    select("name", "gender", "sport",'some_field'),
     field_filter('sport', ['Бокс', 'Волейбол']),
     field_filter('gender', ['Женский']),
     field_filter('name', ['Эмили'])
 )
 
 print(C)
+print(FRIENDS)
