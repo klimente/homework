@@ -1,3 +1,4 @@
+"""Decorator to measure the execution times of dedicated function"""
 import time
 import functools
 
@@ -22,10 +23,10 @@ def time_spender(func):
     def inner(*args, **kwargs):
         """internal function that measure time and returns passed function with passed arguments.
         """
-        t1 = time.time()
+        start_time = time.time()
         result = func(*args, **kwargs)
-        t2 = time.time()
-        spent_time = t2 - t1
+        finish_time = time.time()
+        spent_time = finish_time - start_time
         print(f"execution times - {spent_time}")
         return result
     return inner
@@ -33,16 +34,20 @@ def time_spender(func):
 
 @time_spender
 def some_very_short_func():
-    for i in range(1,1000):
-        print("hohohoho",end=" ")
+    """Some example function
+    """
+    for _ in range(1, 1000):
+        print("hohohoho", end=" ")
 
 
 def some_very_long_func():
-    t1 = time.time()
-    for i in range(1,1000):
-        print("hohohoho",end=" ")
-    t2 = time.time()
-    print(f"execution times - {t2-t1}")
+    """Some example function
+    """
+    start_time = time.time()
+    for _ in range(1, 1000):
+        print("hohohoho", end=" ")
+    finish_time = time.time()
+    print(f"execution times - {finish_time - start_time}")
 
 
 if __name__ == "__main__":
