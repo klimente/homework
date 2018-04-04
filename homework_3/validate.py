@@ -60,11 +60,11 @@ def set_pixel(pixel_values):
 
 if __name__ == '__main__':
 
-    #works
+    #pixel created
     set_pixel((2, 10, 100))
     set_pixel((54, 32, 234))
 
-    #doesn't
+    #finction call is not valid
     set_pixel({2, 10, 100})
     set_pixel([2, 10, 100])
     set_pixel((200, 2, 200), [1])
