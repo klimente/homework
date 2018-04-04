@@ -30,8 +30,8 @@ def validate(low_bounded=float('-inf'), upper_bound=float('inf')):
                 valid = True
                 #check that only one parametr have passed to avoid exception
                 if len(args) == 1:
-                    # check that object is iterable, isTuple and not None
-                    if args[0].__iter__ and isinstance(args[0], tuple) and args[0]:
+                    # check that object isTuple and not None
+                    if isinstance(args[0], tuple) and args[0]:
                         for i in args[0]:
                             # check boundaries, size and type (не уверен насчет проверки типа на инт и картеж(выше))
                             if not isinstance(i, int) or upper_bound < i or len(args[0]) != 3 or i < low_bounded:
