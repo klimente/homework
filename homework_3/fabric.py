@@ -76,10 +76,10 @@ def fabric(fabric_arg):
 
 
 # работает с числами
-WRAPPER = lambda x: x**3
+wrapper = lambda x: x**3
 
 
-@fabric(WRAPPER)
+@fabric(wrapper)
 def deco(some_arg=1):
     """Example of decorator that can be decorated with named argument
 
