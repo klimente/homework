@@ -18,8 +18,7 @@ def time_spender(func):
     ...
     execution times - 0.0
     """
-    functools.wraps(func)
-
+    @functools.wraps(func)
     def inner(*args, **kwargs):
         """internal function that measure time and returns passed function with passed arguments.
         """
