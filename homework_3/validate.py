@@ -33,7 +33,7 @@ def validate(low_bounded=float('-inf'), upper_bound=float('inf')):
                     # check that object is iterable, isTuple and not None
                     if args[0].__iter__ and isinstance(args[0], tuple) and args[0]:
                         for i in args[0]:
-                            # check boundaries, size and type (не уверен насчет типа)
+                            # check boundaries, size and type (не уверен насчет проверки типа на инт и картеж(выше))
                             if not isinstance(i, int) or upper_bound < i or len(args[0]) != 3 or i < low_bounded:
                                 valid = False
                     else:
@@ -63,6 +63,7 @@ if __name__ == '__main__':
     #pixel created
     set_pixel((2, 10, 100))
     set_pixel((54, 32, 234))
+    set_pixel((0,0,256))
 
     #finction call is not valid
     set_pixel({2, 10, 100})
