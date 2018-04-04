@@ -30,8 +30,8 @@ def validate(low_bounded=float('-inf'), upper_bound=float('inf')):
                 valid = True
                 #check that only one parametr have passed to avoid exception
                 if len(args) == 1:
-                    # check that object is iterable and not None
-                    if args[0].__iter__ and args[0]:
+                    # check that object is iterable, isTuple and not None
+                    if args[0].__iter__ and isinstance(args[0],tuple) and args[0]:
                         for i in args[0]:
                             # check boundaries, size and type (не уверен насчет типа)
                             if not isinstance(i, int) or upper_bound < i or len(args[0]) != 3 or i < low_bounded:
@@ -61,11 +61,12 @@ def set_pixel(pixel_values):
 if __name__ == '__main__':
 
     #works
-    set_pixel({2, 10, 100})
-    set_pixel([2, 10, 100])
     set_pixel((2, 10, 100))
     set_pixel((54, 32, 234))
+    
     #doesn't
+    set_pixel({2, 10, 100})
+    set_pixel([2, 10, 100])
     set_pixel((200, 2, 200), [1])
     set_pixel("123")
     set_pixel((1, 2, 3, 4))
