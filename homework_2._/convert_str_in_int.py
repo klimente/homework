@@ -16,6 +16,3 @@ def convert(string: str) -> int:
 
 print(convert("abadss\ds"))
 print(convert("andrey999"))
-
-for i in "andrey999":
-    print(ord(i))
