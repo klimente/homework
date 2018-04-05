@@ -2,7 +2,7 @@
 
 import functools
 
-INNER_DEC_ENABLED = True
+#INNER_DEC_ENABLED = True
 
 
 # получаю lambada
@@ -13,6 +13,20 @@ def fabric(fabric_arg):
     :param fabric_arg: function
     :returns: function -- function thar wrapped into fabric_arg lambda
     """
+
+    INNER_DEC_ENABLED = True
+
+    def off():
+        nonlocal INNER_DEC_ENABLED
+        INNER_DEC_ENABLED = False
+
+    def on():
+        nonlocal INNER_DEC_ENABLED
+        INNER_DEC_ENABLED = True
+
+    fabric.off = off
+    fabric.on = on
+
     if callable(fabric_arg):
 
         # получаю декорируемы декоратор
@@ -108,6 +122,7 @@ def unfunny_mem(some_important_arg):
     print("Working function that returns int")
     return 5
 
+
 @deco
 def funny_mem(some_important_arg):
     """Example of function that returns int
@@ -119,7 +134,16 @@ def funny_mem(some_important_arg):
     print("Working function that returns int")
     return 10
 
+
 if __name__ == '__main__':
+    fabric.on()
+    unfunny_mem([1, 2, 3])
+    funny_mem("saasd")
+    print(unfunny_mem.__name__)
+    print(deco.__name__)
+
+    print("-"*30)
+    fabric.off()
     unfunny_mem([1, 2, 3])
     funny_mem("saasd")
     print(unfunny_mem.__name__)
