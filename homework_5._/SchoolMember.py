@@ -23,7 +23,7 @@ class SchoolMember:
     def show(self):
         """Shows data of a human being.
 
-        :returns: None
+        :returns: None.
         """
         print("Имя:{}; Возраст: {}".format(self._name, self._age))
 
@@ -50,7 +50,7 @@ class Teacher(SchoolMember):
     def show(self):
         """Shows data of a teacher.
 
-        :returns: None
+        :returns: None.
         """
         print("Имя: {}; Возраст: {}; Зарплата: {} ".format(self._name, self._age, self._salary))
 
@@ -69,7 +69,7 @@ class Student(SchoolMember):
         :param gpa: int.
         :returns: instance of Student.
         :raises: AssertionError.
-                """
+        """
         super().__init__(name, age)
         assert isinstance(gpa, (int, float)) and gpa > 0, "Gpa must be positive numeric"
         self._gpa = gpa
@@ -78,7 +78,7 @@ class Student(SchoolMember):
     def show(self):
         """Shows data of a student.
 
-        :returns: None
+        :returns: None.
         """
         print("Имя: {}; Возраст: {}; Cредний бал: {} ".format(self._name, self._age, self._gpa))
 
