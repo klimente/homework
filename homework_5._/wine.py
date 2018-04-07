@@ -19,7 +19,7 @@ class Wine:
         :returns: instance of class Wine.
         :raises: AssertionError,ValueError.
         """
-        assert isinstance(name, str),"Name must be str"
+        assert isinstance(name, str), "Name must be str"
         assert isinstance(trademark, str), "Trademark must be str"
         assert isinstance(country, str), "Country must be str"
         assert isinstance(date_of_birth, tuple), "Date of birth must be tuple of int"
@@ -56,11 +56,9 @@ if __name__ == "__main__":
     many 
     strings
     in 
-    name""",
-    """
+    name""", """
     And
     Here
-    ""","Here_only_one",(2010,10,2))
+    """, "Here_only_one", (2010, 10, 2))
     print(new_wine.name)
     print(new_wine.trademark)
-
