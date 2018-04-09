@@ -247,7 +247,7 @@ if __name__ == "__main__":
     print(f"Равна ли матрица А матрице B:\n{A == B}") #8
     print(B == F)
     print(Matrix([[1], [1]]) == Matrix([[1, 1]]))
-    L = Matrix([[2,2,1],[2,1,2],[1,2,2]])
+    L = Matrix([[2, 2, 1], [2, 1, 2], [1, 2, 2]])
     print(L)
     print(L.is_symmetric_collateral_diag())
 
