@@ -2,6 +2,7 @@
 
 from functools import reduce, wraps
 from operator import add, mul, eq, sub
+from random import randint
 
 
 class Matrix:
@@ -86,7 +87,7 @@ class Matrix:
                 raise ValueError("Row or column is not correct")
             self.row = args[0]
             self.column = args[1]
-            self.matrix = [[x for x in range(self.column)] for _ in range(self.row)]
+            self.matrix = [[randint(0,100) for _ in range(self.column)] for _ in range(self.row)]
         else:
             raise TypeError("Arguments is not correct")
 
