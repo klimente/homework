@@ -171,10 +171,12 @@ class Matrix:
          :param other: Matrix
          :returns: bool -- result
          """
-        res = []
-        for row in range(self.row):
-            res.append(all(list(map(eq, self.matrix[row], other.matrix[row]))))
-        return all(res)
+        if self.column == other.column and self.row == other.row:
+            res = []
+            for row in range(self.row):
+                res.append(all(list(map(eq, self.matrix[row], other.matrix[row]))))
+            return all(res)
+        return False
 
     @Decorators.matrix_cheker
     def __mul__(self, other):
@@ -231,6 +233,8 @@ if __name__ == "__main__":
     print(f"Транспонированная матрица А:\n{A.transpose()}") #7
     print(f"Равна ли матрица А матрице B:\n{A == B}") #8
     print(B == F)
+    print(Matrix([[1], [1]]) == Matrix([[1, 1]]))
+
     #raises exceprion
     #print(A + "s")
     #print(A + B)
@@ -241,3 +245,4 @@ if __name__ == "__main__":
     #Matrix()
     #Matrix([[1,2,3],[1,2]])
     #A.is_symmetrix
+
