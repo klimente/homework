@@ -215,6 +215,18 @@ class Matrix:
             raise TypeError("This is not square matrix")
         return self == self.transpose()
 
+    def is_symmetric_collateral_diag(self):
+        """A method to check that squere matrix is symmetric relative to the secondary diagonal.
+
+        :returns: bool -- result.
+        :raises: TypeError.
+        """
+        if not self.is_square():
+            raise TypeError("This is not square matrix")
+        return all([self.matrix[i][j] == self.matrix[self.row- i - 1][self.row - j - 1]
+                    for i in range(self.row) for j in range(self.column)])
+
+
 if __name__ == "__main__":
     A = Matrix([[1, 2, 3, 4], [1, 2, 3, 4]])
     B = Matrix(2, 4)
@@ -235,6 +247,9 @@ if __name__ == "__main__":
     print(f"Равна ли матрица А матрице B:\n{A == B}") #8
     print(B == F)
     print(Matrix([[1], [1]]) == Matrix([[1, 1]]))
+    L = Matrix([[2,2,1],[2,1,2],[1,2,2]])
+    print(L)
+    print(L.is_symmetric_collateral_diag())
 
     #raises exceprion
     #print(A + "s")
