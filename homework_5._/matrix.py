@@ -88,7 +88,7 @@ class Matrix:
             self.column = args[1]
             self.matrix = [[randint(0, 100) for _ in range(self.column)] for _ in range(self.row)]
         else:
-            raise TypeError("Arguments is not correct")
+            raise ValueError("Arguments is not correct")
 
     @Decorators.int_cheker
     def get_col(self, index):
@@ -226,7 +226,7 @@ class Matrix:
         """
         if not self.is_square():
             raise TypeError("This is not square matrix")
-        return all([self.matrix[i][j] == self.matrix[self.row- i - 1][self.row - j - 1]
+        return all([self.matrix[i][j] == self.matrix[self.row - i - 1][self.row - j - 1]
                     for i in range(self.row) for j in range(self.column)])
 
 
