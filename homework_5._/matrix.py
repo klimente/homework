@@ -20,7 +20,6 @@ class Matrix:
             :returns: function -- decorated function.
             :raises: TypeError.
             """
-            print(cls)
             @wraps(func)
             def inner(*args):
                 """Service function"""
@@ -87,7 +86,7 @@ class Matrix:
                 raise ValueError("Row or column is not correct")
             self.row = args[0]
             self.column = args[1]
-            self.matrix = [[randint(0,100) for _ in range(self.column)] for _ in range(self.row)]
+            self.matrix = [[randint(0, 100) for _ in range(self.column)] for _ in range(self.row)]
         else:
             raise TypeError("Arguments is not correct")
 
@@ -179,7 +178,6 @@ class Matrix:
             return all(res)
         return False
 
-    @Decorators.matrix_cheker
     def __mul__(self, other):
         """A method to multiply two matrices.
 
@@ -188,12 +186,17 @@ class Matrix:
         :returns: Matrix -- result of multiplying.
         :raises: ValueError
          """
-        if not self.column == other.row:
+        if isinstance(other, int):
+            return  self.__rmul__(other)
+        if  not self.column == other.row:
             raise ValueError("Columns are not equal to rows")
-        result = []
-        for row in range(self.row):
-            result.append([reduce(add, map(mul, self.matrix[row], other.get_col(x))) for x in range(other.column)])
-        return Matrix(result)
+        if isinstance(other, Matrix):
+            result = []
+            for row in range(self.row):
+                result.append([reduce(add, map(mul, self.matrix[row], other.get_col(x))) for x in range(other.column)])
+            return Matrix(result)
+        else:
+            raise ValueError("Cannot multiplying to this object")
 
     @Decorators.int_cheker
     def __rmul__(self, other):
@@ -250,6 +253,7 @@ if __name__ == "__main__":
     L = Matrix([[2, 2, 1], [2, 1, 2], [1, 2, 2]])
     print(L)
     print(L.is_symmetric_collateral_diag())
+    print(A*3)
 
     #raises exceprion
     #print(A + "s")
@@ -261,4 +265,3 @@ if __name__ == "__main__":
     #Matrix()
     #Matrix([[1,2,3],[1,2]])
     #A.is_symmetrix
-
