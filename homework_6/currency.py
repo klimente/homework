@@ -324,4 +324,5 @@ if __name__ == "__main__":
     print("Вводим санкции на рубль")
     print(f"Проверяем курс Евро к рублю {Euro.course(Rubble)}")
     print(f"Проверяем курс Доллара к рублю {Dollar.course(Rubble)}")
+    print(Rubble.course(Dollar))
 

@@ -62,6 +62,32 @@ class prop:
             raise AttributeError("can't get attribute")
         self.fdel(instance)
 
+    def getter(self, fget):
+        """ A method to make getter
+        :param fget: property getter
+        :param fget: function
+        :returns: None
+        """
+
+        self.fget = fget
+
+    def setter(self, fset):
+        """ A method to make setter
+        :param fset: property setter
+        :param fset: function
+        :returns: None
+        """
+
+        self.fset = fset
+
+    def deleter(self, fdel):
+        """ A method to make deleter
+        :param fdel: property deleter
+        :param fdel: function
+        :returns: None
+        """
+        self.fdel = fdel
+
 class Something:
     """Some class.
     """
@@ -76,6 +102,7 @@ class Something:
         """some method that use prop descriptor.
         """
         return self.x **2
+
 
 
 if __name__ == "__main__":
