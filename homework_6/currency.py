@@ -288,6 +288,7 @@ class Rubble(Currency):
         """
         return self.value < other.to(self.__class__).value
 
+
     @staticmethod
     def impose_sanctions():
         """A method to simulate sanctions.
