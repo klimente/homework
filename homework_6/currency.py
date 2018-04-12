@@ -130,18 +130,6 @@ class Currency(metaclass=abc.ABCMeta):
         if other == 0:
             return self
 
-    @staticmethod
-    def impose_sanctions():
-        """A method to simulate sanctions.
-
-        :returns None.
-        """
-        Rubble(1).course = (Rubble.course(Euro) / decimal.Decimal('1.5')), Euro
-        Rubble(1).course = (Rubble.course(Dollar) / decimal.Decimal('1.5')), Dollar
-        Euro(1).course = (Euro.course(Rubble) * decimal.Decimal('1.5')), Rubble
-        Dollar(1).course = (Dollar.course(Rubble) * decimal.Decimal('1.5')), Rubble
-
-
 
 @functools.total_ordering
 class Euro(Currency):
@@ -299,6 +287,17 @@ class Rubble(Currency):
         :returns: bool.
         """
         return self.value < other.to(self.__class__).value
+
+    @staticmethod
+    def impose_sanctions():
+        """A method to simulate sanctions.
+
+        :returns None.
+        """
+        Rubble(1).course = (Rubble.course(Euro) / decimal.Decimal('1.5')), Euro
+        Rubble(1).course = (Rubble.course(Dollar) / decimal.Decimal('1.5')), Dollar
+        Euro(1).course = (Euro.course(Rubble) * decimal.Decimal('1.5')), Rubble
+        Dollar(1).course = (Dollar.course(Rubble) * decimal.Decimal('1.5')), Rubble
 
 
 
