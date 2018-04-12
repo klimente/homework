@@ -48,6 +48,7 @@ class Course:
         """A method to set value in data of courses.
         """
         self.data[(instance.__class__.__name__, value[1].__name__)] = decimal.Decimal(value[0])
+        self.data[(value[1].__name__,instance.__class__.__name__)] = decimal.Decimal('1')/decimal.Decimal(value[0])
 
 
 class Currency(metaclass=abc.ABCMeta):
@@ -297,8 +298,6 @@ class Rubble(Currency):
 
         :returns None.
         """
-        Rubble(1).course = (Rubble.course(Euro) / decimal.Decimal('1.5')), Euro
-        Rubble(1).course = (Rubble.course(Dollar) / decimal.Decimal('1.5')), Dollar
         Euro(1).course = (Euro.course(Rubble) * decimal.Decimal('1.5')), Rubble
         Dollar(1).course = (Dollar.course(Rubble) * decimal.Decimal('1.5')), Rubble
 
@@ -307,21 +306,22 @@ class Rubble(Currency):
 if __name__ == "__main__":
 
     e = Euro(5)
-    print(f"Конвертим 5 евро в доллары - {e.to(Dollar)}")
-    print(f"Конвертим 5 евро в рубли - {e.to(Rubble)}")
+    print(f"Конвертим 5 евро в доллары : {e.to(Dollar)}")
+    print(f"Конвертим 5 евро в рубли : {e.to(Rubble)}")
     r = Rubble(100)
-    print(f"Конвертим 100 рублей в доллары - {r.to(Dollar)}")
-    print(f"Конвертим 100 рублей в доллары - {r.to(Euro)}")
-    print(f"Скдажываем 5 евро и 4 доллара - {e + Dollar(4)}")
-    print(f"Отнимаем из 5 евро 100 рублей -{e - Rubble(100)}")
-    print(f"Равен ли 1 евро 1 евро -{Euro(1) == Euro(1)}")
-    print(f"Больше ли 5 евро 2-х долларов - {e >= Dollar(2)}")
-    print(f"Курс доллара к рублю -{Dollar(4).course(Rubble)}")
+    print(f"Конвертим 100 рублей в доллары : {r.to(Dollar)}")
+    print(f"Конвертим 100 рублей в доллары : {r.to(Euro)}")
+    print(f"Скдажываем 5 евро и 4 доллара : {e + Dollar(4)}")
+    print(f"Отнимаем из 5 евро 100 рублей :{e - Rubble(100)}")
+    print(f"Равен ли 1 евро 1 евро : {Euro(1) == Euro(1)}")
+    print(f"Больше ли 5 евро 2-х долларов : {e >= Dollar(2)}")
+    print(f"Курс доллара к рублю :{Dollar(4).course(Rubble)}")
 
-    print(f"Курс евро к рублю -{Euro.course(Rubble)}")
+    print(f"Курс евро к рублю :{Euro.course(Rubble)}")
     print(f"Сумма последовательности из 10 долларов{sum([Dollar(i) for i in range(10)])}")
 
     r.impose_sanctions()
     print("Вводим санкции на рубль")
     print(f"Проверяем курс Евро к рублю {Euro.course(Rubble)}")
     print(f"Проверяем курс Доллара к рублю {Dollar.course(Rubble)}")
+
