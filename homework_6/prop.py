@@ -68,7 +68,6 @@ class prop:
         :param fget: function
         :returns: None
         """
-
         self.fget = fget
 
     def setter(self, fset):
@@ -77,7 +76,6 @@ class prop:
         :param fset: function
         :returns: None
         """
-
         self.fset = fset
 
     def deleter(self, fdel):
@@ -103,8 +101,12 @@ class Something:
         """
         return self.x **2
 
-
+    @attr.setter
+    def attr_set(self,value):
+        self.x = value
 
 if __name__ == "__main__":
     s = Something(10)
+    print(s.attr)
+    s.attr = 12
     print(s.attr)
