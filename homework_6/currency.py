@@ -129,6 +129,8 @@ class Currency(metaclass=abc.ABCMeta):
         """
         if other == 0:
             return self
+        else:
+            raise TypeError("unsopperted operand")
 
 
 @functools.total_ordering
