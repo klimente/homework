@@ -1,4 +1,5 @@
-"""LetterEater"""
+"""LetterEater """
+#прошу прощения, что без шебангов , не успел разобраться.
 
 class Price:
     """Descriptor to handle attribute price.

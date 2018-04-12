@@ -18,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bookprice.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="bookprice.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bookprice.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="60" column="18" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
+            <state relative-caret-position="21">
+              <caret line="1" column="42" lean-forward="false" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -70,7 +70,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="prop.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="prop.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/prop.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="273">
@@ -100,12 +100,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bookprice.py" />
         <option value="$PROJECT_DIR$/vehicle.py" />
         <option value="$PROJECT_DIR$/division.py" />
         <option value="$PROJECT_DIR$/../homework_4/functionalmarks.py" />
         <option value="$PROJECT_DIR$/currency.py" />
         <option value="$PROJECT_DIR$/prop.py" />
+        <option value="$PROJECT_DIR$/bookprice.py" />
       </list>
     </option>
   </component>
@@ -395,14 +395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bookprice.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="60" column="18" lean-forward="false" selection-start-line="60" selection-start-column="18" selection-end-line="60" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vehicle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -441,6 +433,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="13" column="46" lean-forward="true" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bookprice.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="42" lean-forward="false" selection-start-line="1" selection-start-column="42" selection-end-line="1" selection-end-column="42" />
           <folding />
         </state>
       </provider>
