@@ -37,6 +37,8 @@ def get_students(data, course):
 
     :param data: handle data.
     :type data: list.
+    :param course: course with students.
+    :type course: str.
     :returns: list of tuple -- name and rate of student.
     """
     return sorted([(item['name'], item['rate']) for item in data if item['course'] == course],
