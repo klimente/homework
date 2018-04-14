@@ -56,7 +56,6 @@ class Currency(metaclass=abc.ABCMeta):
     """
     course = Course()
 
-
     def __init__(self, value):
         """Creating instance of any inheritors class.
 
@@ -68,6 +67,9 @@ class Currency(metaclass=abc.ABCMeta):
             raise TypeError("Value must be positive.")
         self.value = decimal.Decimal(value)
 
+    @property
+    def currency(self):
+        return self.__class__.__name__
 
     @abc.abstractmethod
     def __str__(self):
@@ -331,7 +333,7 @@ if __name__ == "__main__":
 
     print(f"Курс евро к рублю :{Euro.course(Rubble)}")
     print(f"Сумма последовательности из 10 долларов{sum([Dollar(i) for i in range(10)])}")
-
+    print(e.currency)
     r.impose_sanctions()
     print("Вводим санкции на рубль")
     print(f"Проверяем курс Евро к рублю {Euro.course(Rubble)}")
