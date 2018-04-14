@@ -125,6 +125,17 @@ class Currency(metaclass=abc.ABCMeta):
         pass
 
 
+    def __mul__(self, other):
+        """A method to multiply currency on int.
+
+        :param other: int
+        :type other: int
+        :returns currency
+        """
+        if not isinstance(other,int):
+            raise TypeError("unsupported operand")
+        return self.__class__(self.value * other)
+
     def __radd__(self, other):
         """A method to provide ability to add currency to zero for 'sum'.
         """
@@ -308,6 +319,7 @@ if __name__ == "__main__":
     e = Euro(5)
     print(f"Конвертим 5 евро в доллары : {e.to(Dollar)}")
     print(f"Конвертим 5 евро в рубли : {e.to(Rubble)}")
+    print(e*4)
     r = Rubble(100)
     print(f"Конвертим 100 рублей в доллары : {r.to(Dollar)}")
     print(f"Конвертим 100 рублей в доллары : {r.to(Euro)}")
