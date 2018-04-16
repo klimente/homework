@@ -1,3 +1,5 @@
+#!/usr/bin/env python3.6
+
 """Currency"""
 
 import abc
@@ -47,6 +49,8 @@ class Course:
     def __set__(self, instance, value):
         """A method to set value in data of courses.
         """
+        if instance.__class__.__name__ == value[1].__name__:
+            raise AssertionError("Do not do that, pls")
         self.data[(instance.__class__.__name__, value[1].__name__)] = decimal.Decimal(value[0])
         self.data[(value[1].__name__,instance.__class__.__name__)] = decimal.Decimal('1')/decimal.Decimal(value[0])
 
