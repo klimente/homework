@@ -49,8 +49,8 @@
       <file leaf-file-name="contextmanager.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../homework_9/contextmanager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="48" column="42" lean-forward="false" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+            <state relative-caret-position="620">
+              <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,6 +98,7 @@
         <option value="$PROJECT_DIR$/../../homework/new/tasks/homework.py" />
         <option value="$PROJECT_DIR$/../../homework/new/tasks/contextmetter.py" />
         <option value="$PROJECT_DIR$/../../homework/new/tasks/contextmanager.py" />
+        <option value="$PROJECT_DIR$/../homework_9/contextmanager.py" />
       </list>
     </option>
   </component>
@@ -609,8 +610,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../homework_9/contextmanager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="48" column="42" lean-forward="false" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
+        <state relative-caret-position="620">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding />
         </state>
       </provider>

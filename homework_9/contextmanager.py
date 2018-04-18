@@ -7,7 +7,6 @@ from datetime import date
 class Cmanager:
     """Custom context manager.
     """
-
     def __init__(self, filename):
         """A method to initializes instance.
 
@@ -23,6 +22,7 @@ class Cmanager:
         self._start = 0
         self._finish = 0
 
+
     def __enter__(self):
         """A method to enter the context manager.
 
@@ -30,6 +30,7 @@ class Cmanager:
         """
         self._start = time()
         return self
+
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """A method to exit the context manager.
