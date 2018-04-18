@@ -1,7 +1,8 @@
 """Context manager"""
 
-from time import time
-from datetime import date
+import time
+import datetime
+
 
 
 class Cmanager:
@@ -21,6 +22,7 @@ class Cmanager:
         self._open_file = None
         self._start = 0
         self._finish = 0
+        self._now = None
 
 
     def __enter__(self):
@@ -28,7 +30,8 @@ class Cmanager:
 
         :returns: instance of the Cmanager.
         """
-        self._start = time()
+        self._start = time.time()
+        self._now = datetime.datetime.now()
         return self
 
 
@@ -45,11 +48,13 @@ class Cmanager:
         """
         if exc_type is not None:
             self._open_file = open(self.filename, 'w')
-            self._finish = time() - self._start
+            self._finish = time.time() - self._start
+            # не понял время, в которое выполняется код или время, за которое выполнился код
             self._open_file.write(f" Тип ошибки: {exc_type} \n" +
                                   f" Значение ошибки: {exc_val} \n " +
                                   f" Время работы программы: {self._finish}\n"
-                                  f" Дата работы программы: {date.today()}\n")
+                                  f" Дата работы программы: {self._now.day} {self._now.month} {self._now.year}\n"
+                                  f" Часы: {self._now.hour} Минуты {self._now.minute}")
             self._open_file.close()
             return False
         return True
