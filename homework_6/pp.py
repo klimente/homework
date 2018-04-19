@@ -11,7 +11,6 @@ class Cmanager:
     """
     def __init__(self, filename):
         """A method to initializes instance.
-
         :param filename: name and type of the output file.
         :type filename: str.
         :raises: TypeError.
@@ -28,7 +27,6 @@ class Cmanager:
 
     def __enter__(self):
         """A method to enter the context manager.
-
         :returns: instance of the Cmanager.
         """
         self._start = time.time()
@@ -38,7 +36,6 @@ class Cmanager:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """A method to exit the context manager.
-
         :param exc_type: Type of a error.
         :type exc_type: type.
         :param exc_val: Value of a error.
@@ -48,20 +45,25 @@ class Cmanager:
         :returns: bool -- pass or reraise a exception.
         """
         if exc_type is not None:
+
             self._open_file = open(self.filename, 'w')
             self._finish = time.time() - self._start
             # не понял время, в которое выполняется код или время, за которое выполнился код
-            traceback.print_exception(exc_type, exc_val, exc_tb, file=self._open_file)
-            self._open_file.write(f"\n Время работы программы: {self._finish}\n"
+            self._open_file.write(f"#Для отдельных графиков м и ж Тип ошибки: {traceback.print_exception(exc_type,exc_val,exc_tb,file=self.filename)} \n" +
+                                  f" Значение ошибки: {exc_val} \n " +
+                                  f" Время работы программы: {self._finish}\n"
                                   f" Дата работы программы: {self._now.day} {self._now.month} {self._now.year}\n"
                                   f" Часы: {self._now.hour} Минуты {self._now.minute}")
             self._open_file.close()
             return False
         return True
 
-
-if __name__ == '__main__':
-    with Cmanager("somefile.txt"):
+#Для отдельных графиков м и ж
+#0 заполнчть пропуске
+# на 1 уровне
+#нотебук - дз
+    # if __name__ == '__main__':
+    with Cmanager("test.txt"):
         for i in range(100000):
             print("s")
-        raise AssertionError("Some exception")
+        raise ArithmeticError
