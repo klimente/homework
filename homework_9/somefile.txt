@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "C:/Users/Andrey/Documents/python/homework_9/contextmanager.py", line 67, in <module>
-    raise AssertionError("Some exception")
-AssertionError: Some exception
-
- Время работы программы: 0.4218778610229492
- Дата работы программы: 19 4 2018
- Часы: 22 Минуты 39
