@@ -56,8 +56,6 @@ class Cmanager:
                                   f" Дата работы программы: {self._now.day} {self._now.month} {self._now.year}\n"
                                   f" Часы: {self._now.hour} Минуты {self._now.minute}")
             self._open_file.close()
-            return False
-        return True
 
 
 if __name__ == '__main__':
