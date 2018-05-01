@@ -24,18 +24,18 @@ class TestTriangle(unittest.TestCase):
         """
         Test to check that all attributes has initialized.
         """
-        self.assertEqual(self.tr1.point_a, (7.0, 1.0))
-        self.assertEqual(self.tr1.point_b, (1.0, 9.0))
-        self.assertEqual(self.tr1.point_c, (1.0, 1.0))
-        self.assertEqual(self.tr1.len_ab, 10.0)
-        self.assertEqual(self.tr1.len_ac, 6.0)
-        self.assertEqual(self.tr1.len_bc, 8.0)
-        self.assertEqual(self.tr2.point_a, (3.0, 0.0))
-        self.assertEqual(self.tr2.point_b, (0.0, 4.0))
-        self.assertEqual(self.tr2.point_c, (0.0, 0.0))
-        self.assertEqual(self.tr2.len_ab, 5.0)
-        self.assertEqual(self.tr2.len_ac, 3.0)
-        self.assertEqual(self.tr2.len_bc, 4.0)
+        self.assertEqual(self.tr1.point_a, (7.0, 1.0), "Attribute of instance did not set")
+        self.assertEqual(self.tr1.point_b, (1.0, 9.0), "Attribute of instance did not set")
+        self.assertEqual(self.tr1.point_c, (1.0, 1.0), "Attribute of instance did not set")
+        self.assertEqual(self.tr1.len_ab, 10.0, "Attribute of instance did not set")
+        self.assertEqual(self.tr1.len_ac, 6.0, "Attribute of instance did not set")
+        self.assertEqual(self.tr1.len_bc, 8.0, "Attribute of instance did not set")
+        self.assertEqual(self.tr2.point_a, (3.0, 0.0), 'Attribute of instance did not set')
+        self.assertEqual(self.tr2.point_b, (0.0, 4.0), 'Attribute of instance did not set')
+        self.assertEqual(self.tr2.point_c, (0.0, 0.0), 'Attribute of instance did not set')
+        self.assertEqual(self.tr2.len_ab, 5.0, 'Attribute of instance did not set')
+        self.assertEqual(self.tr2.len_ac, 3.0, 'Attribute of instance did not set')
+        self.assertEqual(self.tr2.len_bc, 4.0, 'Attribute of instance did not set')
 
 
     def test_instance_of_triangle_with_coordinates_with_values_ne_2_negative(self):
@@ -44,7 +44,8 @@ class TestTriangle(unittest.TestCase):
         """
         with self.assertRaises(TypeError) as raised_exception:
             triangle.Triangle((1, 2, 3), (2, (3,)), ('c', 5))
-        self.assertEqual(raised_exception.exception.args[0],'Coordinates must have only 2 values')
+        self.assertEqual(raised_exception.exception.args[0], 'Coordinates must have only 2 values',
+                         'Values of exception wrong')
 
 
     def test_instace_of_triangle_with_coordinates_that_not_tuples_negative(self):
@@ -53,7 +54,8 @@ class TestTriangle(unittest.TestCase):
         """
         with self.assertRaises(TypeError) as raised_exception:
             triangle.Triangle((1, 2), [2, 3], [3, 4])
-        self.assertEqual(raised_exception.exception.args[0], 'Coordinates must be in tuple')
+        self.assertEqual(raised_exception.exception.args[0], 'Coordinates must be in tuple',
+                         'Values of exception wrong')
 
     def test_instance_of_triangle_with_values_of_coordinates_that_not_number_negative(self):
         """
@@ -61,7 +63,8 @@ class TestTriangle(unittest.TestCase):
         """
         with self.assertRaises(ValueError) as raised_exception:
             triangle.Triangle((1,2),(2,(3,)), ('c',5))
-        self.assertEqual(raised_exception.exception.args[0], 'Coordinate value must be number')
+        self.assertEqual(raised_exception.exception.args[0], 'Coordinate value must be number',
+                         'Values of exception wrong')
 
     def test_instance_of_triangle_with_coordinates_that_do_not_form_triangle_negative(self):
         """
@@ -74,8 +77,9 @@ class TestTriangle(unittest.TestCase):
             triangle.Triangle((3.0, 0.0), (4.0, 0.0), (5.0, 0.0))
             sys.stdout = sys.__stdout__
         self.assertEqual(capturedOut.getvalue(),
-                         'Points ((3.0, 0.0), (4.0, 0.0), (5.0, 0.0)) do not form a triangle\n')
-        self.assertEqual(raised_exception.exception.args[0],1)
+                         'Points ((3.0, 0.0), (4.0, 0.0), (5.0, 0.0)) do not form a triangle\n',
+                         'Print did not work')
+        self.assertEqual(raised_exception.exception.args[0], 1, 'Values of exception wrong')
 
     def test_privat_method_of_triangle_length_calculate_with_2_or_more_same_points_negative(self):
         """
@@ -88,69 +92,75 @@ class TestTriangle(unittest.TestCase):
             triangle.Triangle((3.0, 0.0), (0.0, 0.0), (0.0, 0.0))
             sys.stdout = sys.__stdout__
         self.assertEqual(capturedOut.getvalue(),
-                         'Cannot form triangle. Because coordinates ((0.0, 0.0), (0.0, 0.0)) are the same\n')
-        self.assertEqual(raised_exception.exception.args[0], 1)
+                         'Cannot form triangle. Because coordinates ((0.0, 0.0), (0.0, 0.0)) are the same\n',
+                         'Print did not work')
+        self.assertEqual(raised_exception.exception.args[0], 1,
+                         'Values of exception wrong')
 
 
     def test_get_attribute_of_class_apex_of_triangle(self):
         """
         Test to check attribute of class Triangle.
         """
-        self.assertEqual(triangle.Triangle.apex_of_triangle, ('A', 'B', 'C'))
+        self.assertEqual(triangle.Triangle.apex_of_triangle, ('A', 'B', 'C'),
+                         'Attribute of class did not work')
 
     def test_property_points(self):
         """
         Test to check property points of Triangle calculated right.
         """
-        self.assertEqual(self.tr1.points,((7, 1), (1, 9), (1, 1)))
-        self.assertEqual(self.tr2.points,((3.0, 0.0), (0.0, 4.0), (0.0, 0.0)))
-        self.assertEqual(self.floattest.points, ((3.3, 0.0), (0.2, 4.2), (0.0, 0.0)))
+        self.assertEqual(self.tr1.points,((7, 1), (1, 9), (1, 1)), 'Property did not work')
+        self.assertEqual(self.tr2.points,((3.0, 0.0), (0.0, 4.0), (0.0, 0.0)), 'Property did not work')
+        self.assertEqual(self.floattest.points, ((3.3, 0.0), (0.2, 4.2), (0.0, 0.0)), 'Property did not work')
 
     def test_property_sides(self):
         """
         Test to check property  sides of Triangle calculated right.
         """
-        self.assertEqual(self.tr1.sides, (10.0, 6.0, 8.0))
-        self.assertEqual(self.tr2.sides, (5.0, 3.0, 4.0))
+        self.assertEqual(self.tr1.sides, (10.0, 6.0, 8.0), 'Property did not work')
+        self.assertEqual(self.tr2.sides, (5.0, 3.0, 4.0), 'Property did not work')
 
 
     def test_property_semiperimetr(self):
         """
         Test to check property semiperimetr calculated right.
         """
-        self.assertEqual(self.tr1.semiperimeter,12.0)
-        self.assertEqual(self.tr2.semiperimeter,6.0)
-        self.assertAlmostEqual(self.floattest.semiperimeter, 6.362456,places=6)
+        self.assertEqual(self.tr1.semiperimeter, 12.0, 'Property did not work')
+        self.assertEqual(self.tr2.semiperimeter, 6.0, 'Property did not work')
+        self.assertAlmostEqual(self.floattest.semiperimeter, 6.362456,places=6, msg='Property did not work')
 
 
     def test_private_method_length_calculate(self):
         """
         Test to check private method '_length_calculate' of Triangle works fine.
         """
-        self.assertEqual(self.tr1._length_calculate((self.tr1.point_a,self.tr1.point_c)),6.0)
-        self.assertEqual(self.tr2._length_calculate((self.tr2.point_a,self.tr2.point_c)),3.0)
+        self.assertEqual(self.tr1._length_calculate((self.tr1.point_a,self.tr1.point_c)), 6.0,
+                         'Private method did not work')
+        self.assertEqual(self.tr2._length_calculate((self.tr2.point_a,self.tr2.point_c)), 3.0,
+                         'Private method did not work')
 
 
     def test_private_method__multipliers(self):
         """
         Test to check private method '_multipliers' of Triangle works fine.
         """
-        self.assertEqual(self.tr1._multipliers(), (12.0, 2.0, 6.0, 4.0))
-        self.assertEqual(self.tr2._multipliers(), (6.0, 1.0, 3.0, 2.0))
+        self.assertEqual(self.tr1._multipliers(), (12.0, 2.0, 6.0, 4.0), 'Private method did not work')
+        self.assertEqual(self.tr2._multipliers(), (6.0, 1.0, 3.0, 2.0), 'Private method did not work')
 
     def test_method_area_by_heron(self):
         """
         Test to check method 'area_by_heron' of Triangle works fine.
         """
-        self.assertEqual(self.tr1.area_by_heron(), 24.0)
-        self.assertEqual(self.tr2.area_by_heron(), 6.0)
-        self.assertAlmostEqual(self.floattest.area_by_heron(), 6.929, delta=0.001)
+        self.assertEqual(self.tr1.area_by_heron(), 24.0, 'Method did not work')
+        self.assertEqual(self.tr2.area_by_heron(), 6.0), 'Method did not work'
+        self.assertAlmostEqual(self.floattest.area_by_heron(), 6.929, delta=0.001, msg='Method did not work')
 
     def test_function_tuple_points(self):
         """
         Test to check function 'tuple_points' makes tuple of values.
         """
-        self.assertEqual(triangle.tuple_points(lambda x: x*4, [1, 2, 3, 4]), (4, 8, 12, 16))
+        self.assertEqual(triangle.tuple_points(lambda x: x*4, [1, 2, 3, 4]), (4, 8, 12, 16),
+                         'Function tuple_points did not work')
 
     def test_function_tuple_points_with_first_arg_that_not_func_negative(self):
         """
@@ -158,7 +168,8 @@ class TestTriangle(unittest.TestCase):
         """
         with self.assertRaises(ValueError) as raised_exception:
             triangle.tuple_points([4, 3, 1], (4, 8, 12, 16))
-        self.assertEqual(raised_exception.exception.args[0], 'Object [4, 3, 1] is not callable')
+        self.assertEqual(raised_exception.exception.args[0], 'Object [4, 3, 1] is not callable',
+                         'Values of exception wrong')
 
     def test_function_tuple_points_with_second_arg_that_not_iterable_negative(self):
         """
@@ -166,7 +177,8 @@ class TestTriangle(unittest.TestCase):
         """
         with self.assertRaises(ValueError) as raised_exception:
             triangle.tuple_points(lambda x: x*4, 12)
-        self.assertEqual(raised_exception.exception.args[0],'Object 12 is not iterable')
+        self.assertEqual(raised_exception.exception.args[0],'Object 12 is not iterable',
+                         'Values of exception wrong')
 
     @unittest.mock.patch('builtins.input', side_effect=['1', '3'])
     def test_function_parse_input_on_correct_value(self, input):
@@ -174,7 +186,7 @@ class TestTriangle(unittest.TestCase):
         Test to function with input works fine.
         """
         point = triangle.parse_input('A')
-        self.assertEqual(point,(1.0, 3.0))
+        self.assertEqual(point, (1.0, 3.0), 'Function of parsing input did not work')
 
     @unittest.mock.patch('builtins.input', side_effect=['1', ''])
     def test_function_parse_input_on_incorrect_value_with_whitespace_negatice(self, input):
@@ -188,8 +200,9 @@ class TestTriangle(unittest.TestCase):
             triangle.parse_input('A')
             sys.stdout = sys.__stdout__
         self.assertEqual(capturedOut.getvalue(),
-                         "Cannot convert '' to float. Coordinat value must be a number.\n")
-        self.assertEqual(raised_exception.exception.args[0], 1)
+                         "Cannot convert '' to float. Coordinat value must be a number.\n",
+                         'Print did not work')
+        self.assertEqual(raised_exception.exception.args[0], 1, 'Values of exception wrong')
 
     @unittest.mock.patch('builtins.input', side_effect=['a', ''])
     def test_function_parse_input_on_incorrect_value_with_string_negative(self, input):
@@ -203,8 +216,9 @@ class TestTriangle(unittest.TestCase):
             triangle.parse_input('A')
             sys.stdout = sys.__stdout__
         self.assertEqual(capturedOut.getvalue(),
-                         "Cannot convert 'a' to float. Coordinat value must be a number.\n")
-        self.assertEqual(raised_exception.exception.args[0], 1)
+                         "Cannot convert 'a' to float. Coordinat value must be a number.\n",
+                         'Print did not work')
+        self.assertEqual(raised_exception.exception.args[0], 1, 'Values of exception wrong')
 
     @unittest.mock.patch('builtins.input', side_effect=['1,2,3', '4'])
     def test_function_parse_input_on_incorrect_value_with_tuple_negative(self, input):
@@ -218,8 +232,9 @@ class TestTriangle(unittest.TestCase):
             triangle.parse_input('A')
             sys.stdout = sys.__stdout__
         self.assertEqual(capturedOut.getvalue(),
-                         "Cannot convert '1,2,3' to float. Coordinat value must be a number.\n")
-        self.assertEqual(raised_exception.exception.args[0], 1)
+                         "Cannot convert '1,2,3' to float. Coordinat value must be a number.\n",
+                         'Print did not work')
+        self.assertEqual(raised_exception.exception.args[0], 1, 'Values of exception wrong')
 
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_function_show_name(self,mock_stdout):
@@ -227,7 +242,8 @@ class TestTriangle(unittest.TestCase):
         Test to check output of function.
         """
         triangle.show_program_name()
-        self.assertEqual(mock_stdout.getvalue(),'Вычисление площади Герона по координатам.\n')
+        self.assertEqual(mock_stdout.getvalue(),'Вычисление площади Герона по координатам.\n',
+                         'Print did not work')
 
     @unittest.mock.patch('builtins.input', side_effect=['7', '1', '1', '9', '1', '1'])
     def test_function_main_work_with_correct_input(self, input):
@@ -235,7 +251,8 @@ class TestTriangle(unittest.TestCase):
         Test to check main function works.
         """
         return_value = triangle.main(triangle.parse_input,triangle.Triangle.apex_of_triangle)
-        self.assertEqual(return_value, 'Площадь треуголиника равна : 24.0')
+        self.assertEqual(return_value, 'Площадь треуголиника равна : 24.0',
+                         'Main function did not work')
 
     @unittest.mock.patch('builtins.input', side_effect=['1', '3', '1', '9', '1', '1'])
     def test_function_main_try_to_raise_some_exception_that_verified_above_negative(self, input):
@@ -249,7 +266,8 @@ class TestTriangle(unittest.TestCase):
             sys.stdout = sys.__stdout__
         self.assertEqual(capturedOut.getvalue(),
                           'Вычисление площади Герона по координатам.\n'
-                          'Points ((1.0, 3.0), (1.0, 9.0), (1.0, 1.0)) do not form a triangle\n')
+                          'Points ((1.0, 3.0), (1.0, 9.0), (1.0, 1.0)) do not form a triangle\n',
+                         'Output did not work')
 
 
 if __name__ == '__main__':
