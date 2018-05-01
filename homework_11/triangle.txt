@@ -1,0 +1,89 @@
+Tests for module 'triangle'
+===========================
+First import 'triangle' module
+------------------------------
+    >>> import triangle
+
+Now try to create instance:
+    >>> tr = triangle.Triangle((3.0, 0.0), (0.0, 4.0), (0.0, 0.0))
+    >>> tr.point_a
+    (3.0, 0.0)
+    >>> tr.point_b
+    (0.0, 4.0)
+    >>> tr.point_c
+    (0.0, 0.0)
+    >>> tr.len_ab
+    5.0
+    >>> tr.len_ac
+    3.0
+    >>> tr.len_bc
+    4.0
+
+Expect exception:
+    >>> tr = triangle.Triangle((1, 2), (2, (3,)), ('c', 5))
+    Traceback (most recent call last):
+    ValueError: Coordinate value must be number
+    >>> tr = triangle.Triangle((1, 2, 3), (2, (3,)), ('c', 5))
+    Traceback (most recent call last):
+    TypeError: Coordinates must have only 2 values
+    >>> tr = triangle.Triangle((1, 2), [2, 3], [3, 4])
+    Traceback (most recent call last):
+    TypeError: Coordinates must be in tuple
+    >>> tr = triangle.Triangle((3.0, 0.0), (4.0, 0.0), (5.0, 0.0))
+    Traceback (most recent call last):
+    SystemExit: 1
+
+Now use method and properties of the Triangle class:
+Create instance of a triangle:
+    >>> tr = triangle.Triangle((3.0, 0.0), (0.0, 4.0), (0.0, 0.0))
+
+Get coordinates of apex of the triangle:
+    >>> tr.points
+    ((3.0, 0.0), (0.0, 4.0), (0.0, 0.0))
+
+Get calculated lengths of sides of the triangle:
+    >>> tr.sides
+    (5.0, 3.0, 4.0)
+
+Get calculated semiperimetr of the triangle:
+    >>> tr.semiperimeter
+    6.0
+
+Get apex of triangle:
+    >>> tr.apex_of_triangle
+    ('A', 'B', 'C')
+
+Get calculated multipliers for Heron's formula:
+    >>> tr._multipliers()
+    (6.0, 1.0, 3.0, 2.0)
+
+
+Try to calculate length between 2 points of the triangle:
+    >>> tr._length_calculate((tr.point_a, tr.point_b))
+    5.0
+
+Exception of calculating length:
+    >>> tr._length_calculate(((0.0,0.0),(0.0,0.0)))
+    Traceback (most recent call last):
+    SystemExit: 1
+
+Try to calculate area of the triangle by Heron's formula:
+    >>> tr.area_by_heron()
+    6.0
+
+Try to use function 'tuple_points' from module:
+    >>> triangle.tuple_points(lambda x: x**2,[1,2])
+    (1, 4)
+
+Expect exception from function 'tuple_points':
+    >>> triangle.tuple_points('sd',[1,2])
+    Traceback (most recent call last):
+    ValueError: Object sd is not callable
+
+    >>> triangle.tuple_points(lambda x: x**2,3)
+    Traceback (most recent call last):
+    ValueError: Object 3 is not iterable
+
+Try to get name of program:
+    >>> triangle.show_program_name()
+    Вычисление площади Герона по координатам.
