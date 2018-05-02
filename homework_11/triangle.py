@@ -221,12 +221,19 @@ def main(parsing, apex):
     return f'Площадь треуголиника равна : {some_tr.area_by_heron()}'
 
 if __name__ == '__main__':
+<<<<<<< HEAD
 
     #При необходимости раскомментировать необходмые строчки
     import doctest
 
     #Запустить доктест из txt
     doctest.testfile("triangle.txt")
+=======
+    pass
+    #Комменты для 100% покрытия
+    #При необходимости раскомментировать необходмые строчки
+    #import doctest
+>>>>>>> 3f0d05a51ab41fa9a276de615376d2882ec7a367
 
     #Запустить в тестовом режиме.
     # doctest.testmod()
