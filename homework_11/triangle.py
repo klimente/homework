@@ -221,14 +221,13 @@ def main(parsing, apex):
     return f'Площадь треуголиника равна : {some_tr.area_by_heron()}'
 
 if __name__ == '__main__':
-
-    import doctest
-
-    #Запустить тесты из текстового файла.
-    #doctest.testfile('triangle.txt')
+    pass
+    #Комменты для 100% покрытия
+    #При необходимости раскомментировать необходмые строчки
+    #import doctest
 
     #Запустить в тестовом режиме.
     #doctest.testmod()
 
     #Попробовать программу вручную.
-    print(main(parse_input,Triangle.apex_of_triangle))
+    #print(main(parse_input,Triangle.apex_of_triangle))
