@@ -222,13 +222,14 @@ def main(parsing, apex):
 
 if __name__ == '__main__':
 
+    #При необходимости раскомментировать необходмые строчки
     import doctest
 
-    #Запустить тесты из текстового файла.
-    #doctest.testfile('triangle.txt')
+    #Запустить доктест из txt
+    doctest.testfile("triangle.txt")
 
     #Запустить в тестовом режиме.
-    #doctest.testmod()
+    # doctest.testmod()
 
     #Попробовать программу вручную.
-    print(main(parse_input,Triangle.apex_of_triangle))
+    #print(main(parse_input,Triangle.apex_of_triangle))

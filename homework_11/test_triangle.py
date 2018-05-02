@@ -3,11 +3,11 @@ Unittests for triangle module
 """
 import io
 import unittest
-import triangle
 import sys
 import builtins
 import unittest.mock
 
+import triangle
 
 
 class TestTriangle(unittest.TestCase):
