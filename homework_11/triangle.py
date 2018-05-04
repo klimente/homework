@@ -4,7 +4,7 @@ Calculate area of triangle by Heron's formula.
 from itertools import chain, permutations
 from functools import reduce
 from operator import mul, add, sub, eq
-from sys import exit
+import argparse
 
 
 
@@ -62,8 +62,7 @@ class Triangle:
         self.len_bc = self._length_calculate((self.point_b, self.point_c))
 
         if not all([(add(x[0], x[1]) > x[2]) for x in permutations(self.sides, 3)]):
-            print(f'Points {a,b,c} do not form a triangle')
-            exit(1)
+            raise ValueError(f'Points {a,b,c} do not form a triangle')
 
 
     def _length_calculate(self, points):
@@ -73,17 +72,16 @@ class Triangle:
         :param points: 2 points of triangle side.
         :type points: tuple.
         :return: float -- length of a triangle side.
-        :raises: SystemExit
+        :raises: ValueError
 
         >>> Triangle((7, 1), (1, 9), (1, 1))._length_calculate(((0.0, 0.0), (0.0, 5.)))
         5.0
         >>> Triangle((7, 1),(1, 9), (1, 1))._length_calculate(((0.0, 0.5), (0.0, 0.5)))
         Traceback (most recent call last):
-        SystemExit: 1
+        ValueError: Cannot form triangle. Because coordinates ((0.0, 0.5), (0.0, 0.5)) are the same
         """
         if all(eq(*x) for x in zip(*points)):
-            print(f'Cannot form triangle. Because coordinates {points} are the same')
-            exit(1)
+            raise ValueError(f'Cannot form triangle. Because coordinates {points} are the same')
         return float((reduce(add, tuple(sub(*x)**2 for x in zip(*points))))**0.5)
 
     @property
@@ -153,47 +151,21 @@ def parse_input(apex):
     :param apex: name of point.
     :type apex: str.
     :return: tuple -- coordinate.
-    :raises: SystemExit
     """
     x = input(f"Введите x для вершины {apex}: ")
     try:
         x = float(x)
     except ValueError:
         print(f"Cannot convert '{x}' to float. Coordinat value must be a number.")
-        exit(1)
+        return None
     y = input(f'Введите y для вершины {apex}: ')
     try:
         y = float(y)
     except ValueError:
         print(f"Cannot convert '{y}' to float. Coordinat value must be a number.")
-        exit(1)
+        return None
     return x, y
 
-
-def tuple_points(func, iterable):
-    """
-    Function that make a tuple that computes the function
-    using arguments from each of the iterables.
-
-    :param func: some function that takes args from itarable.
-    :type func: functrion
-    :param iterable: iterable obj that need to modify.
-    :return iterable: iterable object.
-
-    >>> tuple_points(lambda x: str(x), [1, 2])
-    ('1', '2')
-    >>> tuple_points(lambda x: str(x), 3)
-    Traceback (most recent call last):
-    ValueError: Object 3 is not iterable
-    >>> tuple_points(Triangle.__name__, [1, 2])
-    Traceback (most recent call last):
-    ValueError: Object Triangle is not callable
-    """
-    if not callable(func):
-        raise ValueError(f'Object {func} is not callable')
-    if not hasattr(iterable, '__iter__'):
-        raise ValueError(f'Object {iterable} is not iterable')
-    return tuple(map(func, iterable))
 
 def show_program_name():
     """
@@ -214,22 +186,33 @@ def main(parsing, apex):
     :param parsing: function to get coordinate of point.
     :type parsing: function.
     :param apex: apex of a triangle or something.
-    :return: str -- area of the triangle.
+    :return: str -- area of the triangle or " ".
     """
     show_program_name()
-    some_tr = Triangle(*tuple_points(parsing, apex))
-    return f'Площадь треуголиника равна : {some_tr.area_by_heron()}'
+    parser = []
+    for i in  apex:
+        coordinat = parsing(i)
+        if not coordinat:
+            return " "
+        parser.append(coordinat)
+    try:
+        some_tr = Triangle(*parser)
+        return f'Площадь треуголиника равна : {some_tr.area_by_heron()}'
+    except ValueError as ex:
+        if 'not form' in ex.args[0]:
+            print(ex.args[0])
+            return " "
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="calculate are of triangle by coordinates")
+    parser.add_argument("--mod", type=str, help='mode of program')
+    arg = parser.parse_args()
 
-    #При необходимости раскомментировать необходмые строчки
     import doctest
-
-    #Запустить доктест из txt
-    doctest.testfile("triangle.txt")
-
-    #Запустить в тестовом режиме.
-    # doctest.testmod()
-
-    #Попробовать программу вручную.
-    #print(main(parse_input,Triangle.apex_of_triangle))
+    
+    if arg.mod == 'texttest':
+        doctest.testfile("triangle.txt")
+    elif arg.mod == 'test':
+        doctest.testmod()
+    else:
+        print(main(parse_input,Triangle.apex_of_triangle))
