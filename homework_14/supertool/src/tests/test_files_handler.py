@@ -46,7 +46,7 @@ class TestDirectoryInspector(unittest.TestCase):
         self.di = supertool.files_handler.DirectoryInspection(os.path.join('.','dir'))
 
     def test_attribute(self):
-        self.assertEqual(self.di.directory, os.path.join('.','dir'))
+        self.assertEqual(self.di.directory, os.path.join('.','dir'), 'Wrong Attribute')
 
     def test_instance_with_incorrect_directory_negative(self):
         with self.assertRaises(FileNotFoundError) as raised_exception:
@@ -97,34 +97,36 @@ class TestDirectoryInspector(unittest.TestCase):
         self.assertEqual(self.di.get_similar_files({"hash":['andrey', 'tests', 'somefile']}),
                          [['andrey', 'tests', 'somefile']])
         self.assertEqual(self.di.get_similar_files({"hash": []}),
-                         [])
+                         [], 'get similar do not work')
 
     def test_identical_files_inspect(self):
         self.assertEqual(self.di.identical_files_inspect(),
                         [['example.txt', 'file.txt', 'workfile.txt', 'example.txt'],
                               ['funnyjoke.txt', 'unfunnyjoke.txt'], ['new.txt', 'old.txt'],
-                              ['anothernotfulljoke.html', 'notfulljoke.html']])
+                              ['anothernotfulljoke.html', 'notfulljoke.html']], 'identical files do not work')
         self.assertEqual(supertool.files_handler.DirectoryInspection(os.path.join('.', 'dir', 'emptydirectory')).identical_files_inspect(),
-                                                                     [])
+                                                                     [], 'do not work without similar files')
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_get_copies_with_incorrrect_pass(self, mock_stdout):
-        self.assertEqual(supertool.files_handler.get_copies('geron'), None)
+        self.assertEqual(supertool.files_handler.get_copies('geron'), None, ' get copies with incorrect pass do not work')
         self.assertEqual(mock_stdout.getvalue(), 'FileNotFoundError: No such directory geron\n',
                          'Print did not work')
 
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_get_copies_with_no_inspected_list(self, mock_stdout):
-        self.assertEqual(supertool.files_handler.get_copies(os.path.join('dir','emptydirectory')), None)
+        self.assertEqual(supertool.files_handler.get_copies(os.path.join('dir','emptydirectory')), None,
+                         'Something wrong with get copies')
         self.assertEqual(mock_stdout.getvalue(), 'In directory dir\emptydirectory\n'
                                                  'There are no identical files\n',
                          'Print did not work')
 
     def test_get_copies_with_no_similar_files(self):
-        self.assertEqual(supertool.files_handler.get_copies(os.path.join('dir', 'subdir3')), None)
+        self.assertEqual(supertool.files_handler.get_copies(os.path.join('dir', 'subdir3')), None,
+                         'get copies work wrong')
 
     @unittest.mock.patch('sys.stdout', new_callable=io.StringIO)
     def test_get_copies_with_correct_input(self,  mock_stdout):
-        self.assertEqual(supertool.files_handler.get_copies(os.path.join('dir')), None)
+        self.assertEqual(supertool.files_handler.get_copies(os.path.join('dir')), None, 'get_copies wok wrong.')
         self.assertEqual(mock_stdout.getvalue(), 'In directory dir\n'
                                                  '4 identical files: example.txt; file.txt; workfile.txt; example.txt\n'
                                                  '2 identical files: funnyjoke.txt; unfunnyjoke.txt\n'
