@@ -1,0 +1,16 @@
+#!usr/bin/env python
+"""
+Similar files finder entrypoint
+"""
+import argparse
+
+from supertool import files_handler
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Find similar files')
+    parser.add_argument('directory', type=str, help='target directory')
+    args = parser.parse_args()
+    files_handler.get_copies(args.directory)
+
+
