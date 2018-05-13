@@ -149,8 +149,9 @@ class TestWeather(unittest.TestCase):
             mock_weather.return_value = example_data
             result = weather.get_current_weather('12.05',('30','60'))
         self.assertEqual(mock_std.getvalue(),
-                         'Today' + '\n12.05\n' + '\n'.join(f' {k:20}'.ljust(10) + '|' + f'{v:4}'.rjust(20) + '|'
-                                             for k, v in weather.get_weather(example_data).items()) + '\n')
+                         'Today'.ljust(10) + 'Right Now'.rjust(32) + f'\n12.05\n' +
+                         '\n'.join(f' {k:20}'.ljust(10) + '|' + f'{v:4}'.rjust(20) + '|'
+                                   for k, v in weather.get_weather(example_data).items()) + '\n')
         self.assertEqual(result, None)
 
 

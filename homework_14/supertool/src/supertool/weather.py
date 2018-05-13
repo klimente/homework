@@ -145,7 +145,7 @@ def get_current_weather(date, coordinates):
     :type coordinates: tuple
     :return: None.
     """
-    print('Today' + f'\n{date}\n' +
+    print('Today'.ljust(10) + 'Right Now'.rjust(32) + f'\n{date}\n' +
           '\n'.join(f' {k:20}'.ljust(10) + '|' + f'{v:4}'.rjust(20) + '|'
                     for k, v in get_weather(get_weather_by_coordinates(coordinates, 'weather')).items()))
 
