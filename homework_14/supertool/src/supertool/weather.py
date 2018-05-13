@@ -206,11 +206,11 @@ def get_pretty_nice_table(place):
 
                 else:
                     date = day['dt_txt'].split()[0]
-                    get_day_time(date)
                     weather_data.clear()
                     weather_data.append(data.values())
 
             if len(weather_data) == 3:
+                get_day_time(date)
                 weather_for_all_day(data.keys(), *[x for x in weather_data])
 
 
