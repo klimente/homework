@@ -1,0 +1,10 @@
+import sys
+from PyQt5 import QtWidgets
+
+import supertool.calculator as calc
+
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    window = calc.MainApplication()
+    window.show()
+    sys.exit(app.exec_())
