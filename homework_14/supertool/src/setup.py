@@ -33,7 +33,7 @@ setup(
     install_requires=extract_requirments(os.path.join(DISTRO_ROOT_PATH,'requirements','base.txt')),
     test_requires=extract_requirments(os.path.join(DISTRO_ROOT_PATH,'requirements','test.txt')),
     test_suite='nose.collector',
-    scripts=[os.path.join('bin','similar_files')],
+    scripts=[os.path.join('bin','similar_files'), os.path.join('bin', 'weather_forecast')],
     zip_safe=False
 
 )
