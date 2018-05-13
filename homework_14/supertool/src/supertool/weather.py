@@ -28,7 +28,6 @@ class NominatimError(Exception):
 def get_coordinates(place):
     """
     Function to get coordinated of the place through Nominatim API.
-
     :param place: location on the Earth.
     :type place: str.
     :return: tuple -- of coordinates.
@@ -64,7 +63,6 @@ def get_weather_by_coordinates(coordinates, mode):
     """
     Function to get data about weather
     by coordinates through OpenWeatherMap API.
-
     :param coordinates: location (lat and lon).
     :type coordinates: tuple.
     :param mode: parameter to the OpenWatherMap API.
@@ -107,7 +105,6 @@ def get_weather_by_coordinates(coordinates, mode):
 def get_weather(reply):
     """
     Function to get main parameters of the weather.
-
     :param reply: all data about weather.
     :type reply: dict.
     :return: dict -- of important parameters.
@@ -122,14 +119,12 @@ def get_weather(reply):
         'Pressure, hPa': reply['main']['pressure'],
         'Humidity, %': reply['main']['humidity'],
         'Wind speed, m/s:': reply['wind']['speed'],
-        'Wind direction, deg': reply['wind']['deg']
     }
 
 
 def weather_for_all_day(*args):
     """
     Function to show weather for whole day in one object.
-
     :param args: parameters names and parameters itself.
     :param args: iterabele objects.
     :return: None.
@@ -144,7 +139,6 @@ def weather_for_all_day(*args):
 def get_current_weather(date, coordinates):
     """
     Function to show weather to current day.
-
     :param date: date of today.
     :type date: str.
     :param coordinates: location(lat, lon)
@@ -159,7 +153,6 @@ def get_current_weather(date, coordinates):
 def get_day_time(date):
     """
     Function to show time of the day.
-
     :param date: date of today.
     :type date: str.
     :return: None.
@@ -170,7 +163,6 @@ def get_day_time(date):
 def get_board():
     """
     Function to show board in the a table.
-
     :return: None
     """
     print('-' * 85)
@@ -178,7 +170,6 @@ def get_board():
 def get_table_title(place):
     """
     Function to show title of a table.
-
     :param place:
     :return: None.
     """
@@ -188,7 +179,6 @@ def get_table_title(place):
 def get_pretty_nice_table(place):
     """
     Main function to show whole table.
-
     :param place: location.
     :type place: str.
     :return: None.
@@ -225,4 +215,4 @@ def get_pretty_nice_table(place):
 
 
 if __name__ == '__main__':
-    pass
+    get_pretty_nice_table('Sertolovo')

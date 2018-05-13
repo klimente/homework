@@ -102,8 +102,7 @@ class TestWeather(unittest.TestCase):
             'Temperature,  Cel': example_data['main']['temp'],
             'Pressure, hPa': example_data['main']['pressure'],
             'Humidity, %': example_data['main']['humidity'],
-            'Wind speed, m/s:': example_data['wind']['speed'],
-            'Wind direction, deg': example_data['wind']['deg']
+            'Wind speed, m/s:': example_data['wind']['speed']
     })
         print(weather.get_weather(example_data))
 
