@@ -148,7 +148,7 @@ class MainApplication(QtWidgets.QMainWindow):
             elif self.operation == '/':
                 try:
                     self.result = truediv(num1, num2)
-                except ZeroDivisionError as exc:
+                except ZeroDivisionError:
                     self.reset()
                     err = 1
             elif self.operation == '^':
