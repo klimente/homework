@@ -26,7 +26,7 @@ class MainApplication(QtWidgets.QMainWindow):
         self.numberdva = ''
         self.result = None
 
-        for i in range(9):
+        for i in range(10):
             col = i % 3
             row = i // 3
             button = QtWidgets.QPushButton(self.ui.gridLayoutWidget)
@@ -41,9 +41,14 @@ class MainApplication(QtWidgets.QMainWindow):
             font.setWeight(75)
             button.setFont(font)
             button.setObjectName(f'button_{i}')
-            self.ui.gridLayout.addWidget(button, row, col, 1, 1)
-            button.setText(str(i+1))
-            button.clicked.connect(functools.partial(self.button_preassed, i+1))
+            if i == 9:
+                self.ui.gridLayout.addWidget(button, 3, 1, 1, 1)
+                button.setText(str(0))
+                button.clicked.connect(functools.partial(self.button_preassed, 0))
+            else:
+                self.ui.gridLayout.addWidget(button, row, col, 1, 1)
+                button.setText(str(i+1))
+                button.clicked.connect(functools.partial(self.button_preassed, i+1))
 
         self.ui.plus.clicked.connect(self.plus_pressed)
         self.ui.division.clicked.connect(self.div_pressed)
@@ -61,13 +66,15 @@ class MainApplication(QtWidgets.QMainWindow):
         :type number: int.
         :return: None.
         """
-        if self.is_operation and self.numberone != '':
+        print(self.is_operation)
+        if self.is_operation and self.numberone != '' or self.result != None and self.numberone != '':
             self.numberdva += str(number)
             self.ui.lcd.display(float(self.numberdva))
         else:
             self.numberone += str(number)
             self.ui.lcd.display(float(self.numberone))
             self.result = None
+        print(self.numberone + ' -- ' + self.numberdva + '-- '+ str(self.result))
 
     def plus_pressed(self):
         """
@@ -121,7 +128,11 @@ class MainApplication(QtWidgets.QMainWindow):
 
         :return:None.
         """
-        self.is_operation = True
+        print('calc start '+self.numberone + ' -- ' + self.numberdva + '-- ' + str(self.result))
+
+        #self.is_operation = True
+        if self.numberone != '':
+            self.is_operation = True
         if self.result != None:
             self.numberone = str(self.result)
         if self.numberone != '' and self.numberdva != '':
@@ -139,6 +150,7 @@ class MainApplication(QtWidgets.QMainWindow):
                 self.result = pow(num1, num2)
             self.ui.lcd.display(self.result)
             self.numberdva = ''
+        print(' calc fun  ' +self.numberone + ' -- ' + self.numberdva + '-- ' + str(self.result))
 
     def enter_pressed(self):
         """
@@ -153,8 +165,8 @@ class MainApplication(QtWidgets.QMainWindow):
         elif self.result == None:
             self.result = float(self.numberone)
             self.ui.lcd.display(self.result)
-        self.is_operation = False
         self.numberone = ''
+        self.is_operation = False
 
     def reset(self):
         """
