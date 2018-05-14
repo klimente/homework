@@ -1,10 +1,10 @@
 """
 True calculator.
 """
-from PyQt5 import QtCore, QtGui, QtWidgets
-
 import functools
-from operator import add,sub,truediv,pow,mul
+from operator import add, sub, truediv, pow, mul
+
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 import supertool.calc_gui.buttons as buttons
 
@@ -25,12 +25,14 @@ class MainApplication(QtWidgets.QMainWindow):
         self.numberone = ''
         self.numberdva = ''
         self.result = None
+        self.operation = ''
 
         for i in range(10):
             col = i % 3
             row = i // 3
             button = QtWidgets.QPushButton(self.ui.gridLayoutWidget)
-            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding,
+                                               QtWidgets.QSizePolicy.Expanding)
             sizePolicy.setHorizontalStretch(0)
             sizePolicy.setVerticalStretch(0)
             sizePolicy.setHeightForWidth(button.sizePolicy().hasHeightForWidth())
@@ -58,7 +60,7 @@ class MainApplication(QtWidgets.QMainWindow):
         self.ui.reset.clicked.connect(self.reset)
         self.ui.result.clicked.connect(self.enter_pressed)
 
-    def button_preassed(self,number):
+    def button_preassed(self, number):
         """
         Function to handle digit button pressure.
 
@@ -66,7 +68,8 @@ class MainApplication(QtWidgets.QMainWindow):
         :type number: int.
         :return: None.
         """
-        if self.is_operation and self.numberone != '' or self.result != None and self.numberone != '':
+        if self.is_operation and self.numberone != '' or\
+                                self.result != None and self.numberone != '':
             self.numberdva += str(number)
             self.ui.lcd.display(float(self.numberdva))
         else:
