@@ -28,8 +28,10 @@ class MainApplication(QtWidgets.QMainWindow):
         self.operation = ''
 
         for i in range(10):
-            col = i % 3
-            row = i // 3
+            if i == 0:
+                col, row = 1, 3
+            else:
+                col, row = (i - 1) % 3, (i - 1) // 3
             button = QtWidgets.QPushButton(self.ui.gridLayoutWidget)
             sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding,
                                                QtWidgets.QSizePolicy.Expanding)
@@ -43,14 +45,9 @@ class MainApplication(QtWidgets.QMainWindow):
             font.setWeight(75)
             button.setFont(font)
             button.setObjectName(f'button_{i}')
-            if i == 9:
-                self.ui.gridLayout.addWidget(button, 3, 1, 1, 1)
-                button.setText(str(0))
-                button.clicked.connect(functools.partial(self.button_preassed, 0))
-            else:
-                self.ui.gridLayout.addWidget(button, row, col, 1, 1)
-                button.setText(str(i+1))
-                button.clicked.connect(functools.partial(self.button_preassed, i+1))
+            self.ui.gridLayout.addWidget(button, row, col, 1, 1)
+            button.setText(str(i))
+            button.clicked.connect(functools.partial(self.button_preassed, i))
 
         self.ui.plus.clicked.connect(self.plus_pressed)
         self.ui.division.clicked.connect(self.div_pressed)
@@ -148,7 +145,7 @@ class MainApplication(QtWidgets.QMainWindow):
             elif self.operation == '/':
                 try:
                     self.result = truediv(num1, num2)
-                except ZeroDivisionError as exc:
+                except ZeroDivisionError:
                     self.reset()
                     err = 1
             elif self.operation == '^':
