@@ -59,6 +59,7 @@ class MainApplication(QtWidgets.QMainWindow):
         self.ui.multypli.clicked.connect(self.mul_pressed)
         self.ui.reset.clicked.connect(self.reset)
         self.ui.result.clicked.connect(self.enter_pressed)
+        self.ui.lcd.display('')
 
     def button_preassed(self, number):
         """
@@ -175,7 +176,7 @@ class MainApplication(QtWidgets.QMainWindow):
 
         :returns: None.
         """
-        self.ui.lcd.display(0)
+        self.ui.lcd.display('')
         self.is_operation = False
         self.numberdva = ''
         self.numberone = ''
