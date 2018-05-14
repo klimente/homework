@@ -29,9 +29,9 @@ class MainApplication(QtWidgets.QMainWindow):
 
         for i in range(10):
             if i == 0:
-                col, row = 1, 3
+                row, col = 3, 1
             else:
-                col, row = (i - 1) % 3, (i - 1) // 3
+                row, col = (i - 1) // 3, (i - 1) % 3
             button = QtWidgets.QPushButton(self.ui.gridLayoutWidget)
             sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding,
                                                QtWidgets.QSizePolicy.Expanding)
