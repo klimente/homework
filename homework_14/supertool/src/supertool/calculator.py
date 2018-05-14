@@ -131,6 +131,7 @@ class MainApplication(QtWidgets.QMainWindow):
 
         :return:None.
         """
+        err = 0
         if self.numberone != '':
             self.is_operation = True
         if self.result != None:
@@ -138,21 +139,23 @@ class MainApplication(QtWidgets.QMainWindow):
         if self.numberone != '' and self.numberdva != '':
             num1 = float(self.numberone)
             num2 = float(self.numberdva)
-            try:
-                if self.operation == '+':
-                    self.result = add(num1, num2)
-                elif self.operation == '-':
-                    self.result = sub(num1, num2)
-                elif self.operation == '*':
-                    self.result = mul(num1, num2)
-                elif self.operation == '/':
+            if self.operation == '+':
+                self.result = add(num1, num2)
+            elif self.operation == '-':
+                self.result = sub(num1, num2)
+            elif self.operation == '*':
+                self.result = mul(num1, num2)
+            elif self.operation == '/':
+                try:
                     self.result = truediv(num1, num2)
-                elif self.operation == '^':
-                    self.result = pow(num1, num2)
-            except Exception:
-                self.reset()
-            self.ui.lcd.display(self.result)
-            self.numberdva = ''
+                except ZeroDivisionError as exc:
+                    self.reset()
+                    err = 1
+            elif self.operation == '^':
+                self.result = pow(num1, num2)
+            if err == 0:
+                self.ui.lcd.display(self.result)
+                self.numberdva = ''
 
     def enter_pressed(self):
         """
@@ -163,7 +166,7 @@ class MainApplication(QtWidgets.QMainWindow):
         self.calculation()
         self.operation = ''
         if self.numberdva == '' and self.numberone == '':
-            self.ui.lcd.display(0)
+            self.ui.lcd.display('')
         elif self.result == None:
             self.result = float(self.numberone)
             self.ui.lcd.display(self.result)
