@@ -137,16 +137,19 @@ class MainApplication(QtWidgets.QMainWindow):
         if self.numberone != '' and self.numberdva != '':
             num1 = float(self.numberone)
             num2 = float(self.numberdva)
-            if self.operation == '+':
-                self.result = add(num1, num2)
-            elif self.operation == '-':
-                self.result = sub(num1, num2)
-            elif self.operation == '*':
-                self.result = mul(num1, num2)
-            elif self.operation == '/':
-                self.result = truediv(num1, num2)
-            elif self.operation == '^':
-                self.result = pow(num1, num2)
+            try:
+                if self.operation == '+':
+                    self.result = add(num1, num2)
+                elif self.operation == '-':
+                    self.result = sub(num1, num2)
+                elif self.operation == '*':
+                    self.result = mul(num1, num2)
+                elif self.operation == '/':
+                    self.result = truediv(num1, num2)
+                elif self.operation == '^':
+                    self.result = pow(num1, num2)
+            except Exception:
+                self.reset()
             self.ui.lcd.display(self.result)
             self.numberdva = ''
 
