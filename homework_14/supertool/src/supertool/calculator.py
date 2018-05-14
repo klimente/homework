@@ -66,7 +66,6 @@ class MainApplication(QtWidgets.QMainWindow):
         :type number: int.
         :return: None.
         """
-        print(self.is_operation)
         if self.is_operation and self.numberone != '' or self.result != None and self.numberone != '':
             self.numberdva += str(number)
             self.ui.lcd.display(float(self.numberdva))
@@ -74,7 +73,7 @@ class MainApplication(QtWidgets.QMainWindow):
             self.numberone += str(number)
             self.ui.lcd.display(float(self.numberone))
             self.result = None
-        print(self.numberone + ' -- ' + self.numberdva + '-- '+ str(self.result))
+
 
     def plus_pressed(self):
         """
@@ -128,9 +127,6 @@ class MainApplication(QtWidgets.QMainWindow):
 
         :return:None.
         """
-        print('calc start '+self.numberone + ' -- ' + self.numberdva + '-- ' + str(self.result))
-
-        #self.is_operation = True
         if self.numberone != '':
             self.is_operation = True
         if self.result != None:
@@ -150,7 +146,6 @@ class MainApplication(QtWidgets.QMainWindow):
                 self.result = pow(num1, num2)
             self.ui.lcd.display(self.result)
             self.numberdva = ''
-        print(' calc fun  ' +self.numberone + ' -- ' + self.numberdva + '-- ' + str(self.result))
 
     def enter_pressed(self):
         """
