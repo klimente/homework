@@ -37,7 +37,7 @@ setup(
         os.path.join('bin','similar_files'),
         os.path.join('bin', 'weather_forecast'),
         os.path.join('bin', 'calculator'),
-        os.path.join('bin', 'weather_gui'),
+        os.path.join('bin', 'weather_forecast_gui'),
         os.path.join('bin', 'similar_files_gui'),
     ],
     zip_safe=False
