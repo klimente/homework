@@ -1,0 +1,15 @@
+#!/usr/bin/env python3.6
+"""
+Similar files finder by entry point.
+Window application.
+"""
+import sys
+from PyQt5 import QtWidgets
+
+import supertool.files_handler_gui.files_handler_app as fha
+
+if __name__ == '__main__':
+    app = QtWidgets.QApplication(sys.argv)
+    window = fha.MainApp()
+    window.show()
+    sys.exit(app.exec_())
