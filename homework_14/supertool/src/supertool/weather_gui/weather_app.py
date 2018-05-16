@@ -27,7 +27,11 @@ class MainApp(QtWidgets.QMainWindow):
         """
         try:
             self.place = self.ui.lineEdit.text()
+            # delete all objects in grid.
+            self._clear_grid(self.ui.gridLayout)
+            self._clear_grid(self.ui.gridLayout_3)
             if not self.place:
+
                 label = QtWidgets.QLabel(
                     'Please enter a place',
                     self.ui.gridLayoutWidget
@@ -40,9 +44,6 @@ class MainApp(QtWidgets.QMainWindow):
                     uw.get_coordinates(self.place),
                     'weather')
                 )
-                #delete all objects in grid.
-                for i in reversed(range(self.ui.gridLayout.count())):
-                    self.ui.gridLayout.itemAt(i).widget().deleteLater()
                 #dinamically create buttons with current weather and forecast.
                 cweather_button = QtWidgets.QPushButton(self.ui.gridLayoutWidget)
                 sizePolicy = QtWidgets.QSizePolicy(
@@ -82,10 +83,8 @@ class MainApp(QtWidgets.QMainWindow):
 
         except Exception as exc:
             #in case exception delete all objects in grid layout 3 and 1.
-            for i in reversed(range(self.ui.gridLayout.count())):
-                self.ui.gridLayout.itemAt(i).widget().deleteLater()
-            for i in reversed(range(self.ui.gridLayout_3.count())):
-                self.ui.gridLayout_3.itemAt(i).widget().deleteLater()
+            self._clear_grid(self.ui.gridLayout)
+            self._clear_grid(self.ui.gridLayout_3)
             #put error message in grid layout 1
             error_massage = f'Error: {exc.args[0]}'
             label = QtWidgets.QLabel(error_massage, self.ui.gridLayoutWidget)
@@ -99,8 +98,7 @@ class MainApp(QtWidgets.QMainWindow):
         :return: None.
         """
         #clear grid
-        for i in reversed(range(self.ui.gridLayout_3.count())):
-            self.ui.gridLayout_3.itemAt(i).widget().deleteLater()
+        self._clear_grid(self.ui.gridLayout_3)
         #dinamically create table
         tableWidget = QtWidgets.QTableWidget(len(self.data.keys()), 1, self.ui.gridLayoutWidget_3)
         tableWidget.setObjectName("tableWidget_0")
@@ -140,8 +138,7 @@ class MainApp(QtWidgets.QMainWindow):
         forecast_dates = data[0]
         forecast_data = data[1]
         #clear grid
-        for i in reversed(range(self.ui.gridLayout_3.count())):
-            self.ui.gridLayout_3.itemAt(i).widget().deleteLater()
+        self._clear_grid(self.ui.gridLayout_3)
         #dinamycally create and fill all data
         for index, val in enumerate(forecast_data):
             label = QtWidgets.QLabel(forecast_dates[index], self.ui.gridLayoutWidget_3)
@@ -171,6 +168,11 @@ class MainApp(QtWidgets.QMainWindow):
                     tableWidget.item(count, num).setFont(font)
             date_pos += 2
             value_pos += 2
+
+    def _clear_grid(self, grid):
+        for i in reversed(range(grid.count())):
+            grid.itemAt(i).widget().deleteLater()
+
 
 
 if __name__ == '__main__':
