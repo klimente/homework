@@ -170,6 +170,11 @@ class MainApp(QtWidgets.QMainWindow):
             value_pos += 2
 
     def _clear_grid(self, grid):
+        """
+        Method to clear grid.
+        :param grid: GridLayout.
+        :return: None.
+        """
         for i in reversed(range(grid.count())):
             grid.itemAt(i).widget().deleteLater()
 
