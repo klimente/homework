@@ -2,7 +2,10 @@
 Module to work with OpenWeatheMap API and Nominatim API.
 """
 import requests
+import os
+import json
 
+DISTRO_ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 class ResponseError(Exception):
     """
@@ -77,12 +80,17 @@ def get_weather_by_coordinates(coordinates, mode):
     if mode not in ['forecast', 'weather']:
         raise ValueError('mode must be "forecast" or "weather"')
 
+    with open(os.path.join(DISTRO_ROOT_PATH, '..', 'config.json')) as file:
+
+        data = json.load(file)
+
+
     url = f"http://api.openweathermap.org/data/2.5/{mode}"
 
     querystring = {
         "lat": coordinates[0],
         "lon": coordinates[1],
-        "appid": "b4a9d8e16b916107e741f1e84440c660",
+        "appid": data["appid"],
         'units': 'metric'
     }
 
