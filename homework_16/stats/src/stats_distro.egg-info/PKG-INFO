@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: stats-distro
+Version: 0.1
+Summary: Modul for working with data
+Home-page: UNKNOWN
+Author: Klimenko Andrey
+Author-email: zaktoq@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Topic :: Education
+Classifier: Programming Language :: Python :: 3.6
