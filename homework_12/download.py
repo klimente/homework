@@ -17,7 +17,7 @@ from PIL import Image
 
 ABS_PATH = os.path.dirname(os.path.abspath(__file__))
 report_data = dict(zip(('success', 'failure', 'bytes_downloaded'), (0, 0, 0)))
-
+lock = threading.Lock()
 
 def get_urls(source):
     """
@@ -106,7 +106,7 @@ def image_handler(params):
             im = im.convert('RGB')
         im.thumbnail(params["size"])
         im.save(os.path.join(params["target_dir"], params["index"].zfill(5) + '.jpeg'), 'JPEG')
-        with threading.Lock():
+        with lock:
             report_data['success'] += 1
             report_data['bytes_downloaded'] += len(im_bytes)
         print(f'url {params["index"]} successfully completed')
@@ -115,7 +115,7 @@ def image_handler(params):
             print(f'url {params["index"]} failed with error: {type(exc).__name__}: {exc.args[0]}')
         else:
             print(f'url {params["index"]} failed with error: {type(exc).__name__}')
-        with threading.Lock():
+        with lock:
             report_data['failure'] += 1
 
 
